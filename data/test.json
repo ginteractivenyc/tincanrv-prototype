@@ -1,0 +1,65 @@
+rvCallback({
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+         "vehiclename": "2008 Gulf Stream",
+         "vehicleimage": "http://media.channelblade.com/boat_graphics/dealers/33644/digi37427494_l.jpg"
+         },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.091796875,
+          40.58058466412764
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+         "vehiclename": "1999 Ford RV",
+         "vehicleimage": "http://www.sylvanlakerv.com/wp-content/uploads/2012/10/2008-Gulf-Stream-Tour-Master.jpg"
+
+         },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.8798828125,
+          40.713955826286046
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+         "vehiclename": "2005 Chevy RV",
+         "vehicleimage": "http://thumbs2.ebaystatic.com/d/l225/m/mlLa2lpT3PvJOnUvZS0a0vQ.jpg"
+         
+         },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.978841,
+          40.754192
+         
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+         "vehiclename": "2005 Chevy RV",
+         "vehicleimage": "http://thumbs2.ebaystatic.com/d/l225/m/mlLa2lpT3PvJOnUvZS0a0vQ.jpg"
+         
+         },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.35546875000001,
+          35.85343961959182
+        ]
+      }
+    }    
+  ]
+});

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE-edge">
+		<title></title>
+		<meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    </head>
+    <body>
+    	<p id="login">Hello</p>
+    	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    	 <script>
+
+    	 $('#login').click(function(){
+
+
+    	
+$.ajax({
+           url: 'http://www.tincanrv.com/oauth/access_token',
+           type: 'POST',
+           data: {username: 'agrant', password: 'logroot', grant_type : "password", client_id: '1', client_secret: '1234'},
+           success: function(data) {
+               //window.location.replace("profile.html?" + data.username);
+               //$('#response').html(data); // <- this would have to be your own way of showing that user is logged in
+               console.log(data);
+           },
+           error: function (xhr, ajaxOptions, thrownError) {
+               //$('#response').html(xhr.responseText); // <- same here, your own div, p, span, whatever you wish to use
+               $('#response').html(xhr.responseText);
+           }
+       });
+   });
+
+
+    	 </script>
+    </body>
+</html>

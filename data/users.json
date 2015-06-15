@@ -1,0 +1,155 @@
+{
+	"users": [
+		{
+			"id": "1",	
+			"first_name": "Jane",
+			"last_name": "Doe",
+			"profilethumb": "http://upload.wikimedia.org/wikipedia/commons/d/d2/Michelle-Borromeo-Actor-Headshots-Vancouver-BC20110408_0030.jpg",			
+			"vehicles": [
+				{
+					"model": "Forest River Forester 2401R",
+					"year": "2015",
+					"class": "Class C Diesel",
+					"length": "24' 10'",
+					"fuel_type" : "Diesel",
+					"type": "RV",
+					"image" : "img/thumb.jpg"
+				}
+			],
+			"address": [
+				{
+					"street": "81 Barker Street",
+					"city": "Los Angeles",
+					"zipcode": "91026",
+					"state": "California"
+				}
+			]		
+		},
+		{
+			"id": "2",				
+			"first_name": "Bill",
+			"last_name": "Murray",
+			"profilethumb": "http://p.fod4.com/p/channels/cgldg/profile/s=w1200/o=95/ZnuKsMIQ3GnQ607IOYnj_bill_murray.jpg",			
+			"vehicles": [
+				{
+					"model": "RV Number 2",
+					"year": "2015",
+					"class": "Class C Diesel",
+					"length": "24' 10'",
+					"fuel_type" : "Diesel",
+					"type": "RV",
+					"image" : "img/thumb2.jpg"
+				}
+			],
+			"address": [
+				{
+					"street": "81 Barker Street",
+					"city": "Staten Island",
+					"zipcode": "10301",
+					"state": "New York"
+				}
+			]		
+		},
+		{
+			"id": "3",	
+			"first_name": "JayZ",
+			"last_name": "Carter",
+			"profilethumb": "https://a3-images.myspacecdn.com/images03/35/a03b92e0338b4b229ae5e3cb379a2907/300x300.jpg",			
+			"vehicles": [
+				{
+					"model": "RV Number 3",
+					"year": "2015",
+					"class": "Class C Diesel",
+					"length": "24' 10'",
+					"fuel_type" : "Diesel",
+					"type": "RV",
+					"image" : "img/thumb3.jpg"
+				}
+			],
+			"address": [
+				{
+					"street": "81 Barker Street",
+					"city": "Chicago",
+					"zipcode": "10301",
+					"state": "illinois"
+				}
+			]		
+		},		
+		{
+			"id": "4",				
+			"first_name": "Alyssa",
+			"last_name": "Milano",
+			"profilethumb": "http://cdn.modernfarmer.com/wp-content/uploads/2014/10/Jessica-Alba-3.jpg",			
+			"vehicles": [
+				{
+					"model": "RV Number 4",
+					"year": "2015",
+					"class": "Class C Diesel",
+					"length": "24' 10'",
+					"fuel_type" : "Diesel",
+					"type": "RV",
+					"image" : "img/thumb.jpg"
+				}
+			],
+			"address": [
+				{
+					"street": "81 Barker Street",
+					"city": "Brooklyn",
+					"zipcode": "10301",
+					"state": "New York"
+				}
+			]		
+		},
+		{
+			"id": "5",				
+			"first_name": "Greg",
+			"last_name": "Atria",
+			"profilethumb": "http://p.fod4.com/p/channels/cgldg/profile/s=w1200/o=95/ZnuKsMIQ3GnQ607IOYnj_bill_murray.jpg",			
+			"vehicles": [
+				{
+					"model": "RV Numer 5",
+					"year": "2015",
+					"class": "Class C Diesel",
+					"length": "24' 10'",
+					"fuel_type" : "Diesel",
+					"type": "RV",
+					"image" : "img/thumb5.jpg"
+				}
+			],
+			"address": [
+				{
+					"street": "81 Barker Street",
+					"city": "Hoboken",
+					"zipcode": "10301",
+					"state": "New Jersey"
+				}
+			]		
+		},
+		{
+			"id": "6",				
+			"first_name": "Phil",
+			"last_name": "Jackson",
+			"profilethumb": "http://upload.wikimedia.org/wikipedia/commons/5/5a/Phil_Jackson_3_cropped.jpg",			
+			"vehicles": [
+				{
+					"model": "RV Number 6",
+					"year": "2015",
+					"class": "Class C Diesel",
+					"length": "24' 10'",
+					"fuel_type" : "Diesel",
+					"type": "RV",
+					"image" : "img/thumb4.jpg"
+				}
+			],
+			"address": [
+				{
+					"street": "81 Barker Street",
+					"city": "White PLains",
+					"zipcode": "10603",
+					"state": "New York"
+				}
+			]		
+		}
+
+	]
+}

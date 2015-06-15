@@ -1,0 +1,134 @@
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+	<!--login form-->
+	<form id="logInForm" ng-submit="loginSubmit()">
+			<div class="form-group">
+				<label for="username">Username</label>
+				<input type="text" class="form-control" id="username" name="username" placeholder="Enter Username">
+			</div>
+			
+			<div class="form-group">
+				<label for="password">Password</label>
+				<input type="password" class="form-control" id="password" name= "password" placeholder="Password">
+			</div>
+			<button  class="btn btn-default">Login</button>
+	</form>        
+
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- BODY-->
+<div class="tcHome">
+	
+	<h1 class="mainh1">TRAVEL THE ROAD LESS TRAVELED </h1>
+	<!--<div class="tcSubHead">YOUR ADVENTURE AWAITS</div>-->
+	<form>
+		<div class="form-group">
+			<div class="tcHomeSearchBox">
+				<input class="form-control" type="text" placeholder="Search For A Neighborhood" id="tcHomeSearch"/>
+				<button type="submit" class="btn btn-default">Submit</button>
+			</div>
+		</div>
+	</form>
+	<button id="seeHowBtn" type="text" class="btn btn-default" ng-click="howItWorks()">See How It Works</button>
+	<!--<ul class="tcVehOpts">
+			<li><img ng-src="img/rv.png"><span>RV</span></li>
+			<li><img ng-src="img/boat.png"><span>BOAT</span></li>
+			<li><img ng-src="img/4wheel.png"><span>4 WHEEL</span></li>
+	</ul>-->
+</div>
+<div class="tc960Wrap">
+	<div class="row top-buffer">
+		<div class="col-sm-3">
+			<select class="form-control">
+				<option>Pickup Location</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+			</select>
+		</div>
+		<div class="col-sm-3">
+			<select class="form-control">
+				<option>Check-in Date</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+			</select>
+		</div>
+		<div class="col-sm-3">
+			<select class="form-control">
+				<option>Check-out Date</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+			</select>
+		</div>
+		<div class="col-sm-3">
+			<select class="form-control">
+				<option># of Guests</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+			</select>
+		</div>
+	</div>
+</div>
+<div class="tcOuterSub">
+	
+	<div class="tc1400Wrap" >
+		<div class="row top-buffer" ng-repeat="rows in chunkedData ">
+			<div class="col-sm-4 tilemain" ng-repeat="tile in rows" data-id="{{tile.id}}" ng-click="openItem($event)">
+				<div class="tctile">
+					<div class="tcpill">
+						<img ng-src="{{tile.profilethumb}}"/>
+					</div>
+					<div class="tctileoverlay">{{tile.vehicles[0].model}}</div>
+					<img ng-src="{{tile.vehicles[0].image}}"/>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="tcOuterSub listBlock">
+	<div class="tc1400Wrap notop" >
+		<div class="row top-buffer">
+			<div class="col-sm-4" >
+				<div class="tcListWrap">
+					<h3>Title for List Your RV</h3>
+					<p>Lorem ipsum dolor sit amet, volutpat elit etiam pharetra ipsum nullam accumsan, nunc fames, lacus nibh commodo, wisi aenean rhoncus aliquet vestibulum. Eu posuere gravida vivamus sed, turpis ac lorem fermentum, eget porta donec maecenas, nisl vestibulum ornare dictumst suscipit bibendum. Leo diam alias, congue turpis ante dolore est et. A quam consectetuer porttitor eu class, elementum dui, minus nulla vivamus nunc ultr</p>
+					<button type="submit" class="btn btn-default">List Your RV</button>
+				</div>
+			</div>
+			<div class="col-sm-8" >
+				<div class="row">
+					<div class="col-xs-4" >
+						<img ng-src="http://placehold.it/140x140">
+					</div>
+					<div class="col-xs-4" >
+						<img ng-src="http://placehold.it/140x140">
+					</div>
+					<div class="col-xs-4" >
+						<img ng-src="http://placehold.it/140x140">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

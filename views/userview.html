@@ -1,0 +1,69 @@
+
+
+<div class="container-fluid">
+<div  class="itemView">
+		<div class="row ">
+			<div class="col-sm-12 tcitemViewHeadline">
+			   <div class="tctileoverlay">{{userCity}}</div>
+			  <div id="map-canvas"></div>
+		    </div>
+		 </div>
+
+			<div class="col-sm-12 tcuserInfo" >
+				<div class="row">
+			     <div class="col-sm-2">
+					<div class="tcpill-lg" data-id="{{userid}}">
+					     <img src="{{userImg}}"/>
+					 </div>
+				     <span class="tcUserName">{{userName}}</span>
+				     <span class="tcUserAddy">{{userCity}}</span>
+
+				 </div>
+
+
+			  	<div class="col-xs-10" >
+			  		<div class="col-sm-12 lightfont">
+			  			<h3>Bio</h3>
+			  			<p>Lorem ipsum dolor sit amet, sem donec, fusce mattis id praesent tempus gravida magna, id dignissim nunc vitae. Vitae cras, etiam urna. Eleifend condimentum nunc risus lectus. Et eu nam tortor congue placerat, hac nisl id venenatis sit, sollicitudin ultricies integer proin eros nunc justo, a vel scelerisque enim massa velit libero. Tempor congue labore orci, a iLorem ipsum dolor sit amet, sem donec, fusce mattis id praesent tempus gravida magna, id dignissim nunc vitae. Vitae cras, etiam urna. Eleifend condimentum nunc risus lectus. Et eu nam tortor congue placerat, hac nisl id venenatis sit, sollicitudin ultricies integer proin eros nunc justo, a vel scelerisque enim massa velit libero. Tempor congue labore orci, a i</p>
+			  		</div>
+			   </div>
+			     </div>
+
+			</div>	
+
+
+				<div class="col-sm-12 ">
+					<button>Reviews</button>
+
+				</div>
+
+
+			<div class="col-sm-12 ">
+				<h3 class="padleftright">RV's in your network</h3>
+			</div>
+
+			<div class="col-sm-12 ">
+				  <div class="col-sm-4 tilemain" ng-repeat="rvs in rvList" data-id="{{rvs.id}}" ng-click="openItem($event)">
+				  	<div class="tctile">
+				  		<div class="tcpill">
+				  			<img ng-src="{{rvs.profilethumb}}"/>
+				  		</div>
+				  		<div class="tctileoverlay">{{rvs.model}}</div>
+				  		<img ng-src="http://placehold.it/300x300"/>
+				  	</div>
+				  </div>
+			</div>
+
+
+
+
+		 <div class="row">
+			<div class="col-sm-6" >
+			</div>
+		</div>
+
+
+
+    </div>
+</div>
+
