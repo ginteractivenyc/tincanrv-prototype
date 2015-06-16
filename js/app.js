@@ -12,7 +12,14 @@ var tincanrvApp = angular.module("tincanrvApp", ['ngRoute', 'ngResource']).filte
   };
 
 });
-
+tincanrvApp.run(function($rootScope) {
+    $rootScope.$on('$viewContentLoaded', function(event){
+      setTimeout(function(){
+          $('footer').show();
+      }, 700)
+      
+    });
+ });
 
 tincanrvApp.config(['$routeProvider',
   function($routeProvider) {

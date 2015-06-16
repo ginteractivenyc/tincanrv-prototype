@@ -203,7 +203,7 @@ top:0;
 }
 
 .topPad{
-  padding-top: 40px;
+  padding-top: 10px;
 }
 
 .nobg{
@@ -437,6 +437,7 @@ footer{
   min-height: 300px;
   width:100%;
   background:#000000;
+  display:none;
 }
 
 
@@ -444,7 +445,7 @@ footer{
 
 /*ITEMS VIEW PAGE*/
 .itemView{
-  background: #333;
+  background: rgba( 0,0,0,0.8);
   max-width: 1200px;
   margin:0 auto;
 }
@@ -869,7 +870,7 @@ footer{
 
 }
 #signUpForm, #addressForm{
-  margin-top: 60px;
+  /*margin-top: 60px;*/
   background: rgba(0,0,0,0.8);
 
   /* padding: 10px; */

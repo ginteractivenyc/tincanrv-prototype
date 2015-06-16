@@ -1,160 +1,134 @@
-
 <div ng-show="showthis == 'show'" >
-
-<div class="container-fluid topPad">
-	<div class="itemView">
-
-		<div class="row topPad padleftright">
-			<div class="col-sm-8">
-				<h1 class="lightfont">List Your RV</h1>
-
-				<!--<fieldset>
-				  <div class="col-sm-12 nopad">
-	
-					<div class="form-group">
-						<h4 class="lightfont">Photos</h4>
-						<form action="/upload" class="dropzone" drop-zone id="file-dropzone">
+	<div class="container-fluid topPad">
+		<div class="itemView">
+			<div class="row topPad padleftright">
+				<div class="col-sm-8">
+					<h1 class="lightfont">List Your RV</h1>
+					<!--<fieldset>
+						<div class="col-sm-12 nopad">
+							
+								<div class="form-group">
+										<h4 class="lightfont">Photos</h4>
+										<form action="/upload" class="dropzone" drop-zone id="file-dropzone">
+									</div>
+							</div>
+						</fieldset>-->
+						<form id="listRvForm" ng-submit="listRv()">
+							<div class="col-sm-8 nopad">
+								<div class="form-group">
+									<h4 class="lightfont">Model</h4>
+									<input type="text" class="form-control"  name="model" placeholder="Enter a Model"/>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="form-group">
+									<h4 class="lightfont">Type of Listing</h4>
+									<input type="text" class="form-control"  name="type" placeholder="Enter a Type"/>
+								</div>
+							</div>
+							<div class="col-sm-12 nopad">
+								<div class="form-group">
+									<h4 class="lightfont">Year</h4>
+									<textarea type="text" class="form-control"  name="year" placeholder="Enter a Year"></textarea>
+								</div>
+							</div>
+							<div class="col-sm-12 nopad">
+								<div class="form-group">
+									<h4 class="lightfont">Length</h4>
+									<textarea type="text" class="form-control"  name="length" placeholder="Enter a Length"></textarea>
+								</div>
+							</div>
+							<div class="col-sm-12 nopad">
+								<div class="form-group">
+									<h4 class="lightfont">Details</h4>
+									<textarea type="text" class="form-control"   name="details" placeholder="Enter Details"></textarea>
+								</div>
+							</div>
+							<div class="col-sm-12 nopad">
+								<div class="form-group">
+									<h4 class="lightfont">Features</h4>
+									<textarea type="text" class="form-control"  name="features" placeholder="Enter Features"></textarea>
+								</div>
+							</div>
+							<div class="col-sm-12 nopad">
+								<div class="form-group">
+									<h4 class="lightfont">RV Description</h4>
+									<textarea type="text" class="form-control"  name="description" placeholder="Enter a Description"></textarea>
+								</div>
+							</div>
+							<h4 class="lightfont" style="padding-left:15px;">Price</h4>
+							<div class="col-sm-3 nopad">
+								<div class="form-group">
+									<input type="text" class="form-control"  name="daily_rate" placeholder="Enter a Price"/>
+								</div>
+							</div>
+							<div class="col-sm-3 nopad label-form">
+								<div class="form-group">
+									<label for="daily_rate">/daily</label>
+								</div>
+							</div>
+							<h4 class="lightfont" style="padding-left:15px;">Price</h4>
+							<div class="col-sm-3 nopad" style="clear:both;">
+								<div class="form-group">
+									<input type="text" class="form-control"  name="weekly_rate" placeholder="Enter a Price"/>
+								</div>
+							</div>
+							<div class="col-sm-3 nopad label-form">
+								<div class="form-group">
+									<label for="weekly_rate">/weekly</label>
+								</div>
+							</div>
+							<button class="btn btn-default" style="clear:both;float:left;">List RV</button>
+						</form>
+						
+						<!--
+										<fieldset>
+																					<div class="col-sm-12 nopad">
+													<div class="form-group">
+															<h4 class="lightfont">Address</h4>
+														<input type="text" class="form-control"  id="add-input" placeholder="Address"  class="controls" >
+																		</div>
+												</div>
+											</fieldset>
+										<fieldset>
+												<div class="col-sm-8 nopad">
+													<div class="form-group">
+															<h4 class="lightfont">City</h4>
+														<input type="text" class="form-control" id="city-input" placeholder="City">
+													</div>
+												</div>
+												<div class="col-sm-4">
+													<div class="form-group">
+															<h4 class="lightfont">State</h4>
+														<input type="text" class="form-control" id="state-input" placeholder="State">
+													</div>
+																	</div>
+										</fieldset>
+										<fieldset>
+																					<div class="col-sm-3 nopad">
+													<div class="form-group">
+															<h4 class="lightfont">Zip Code</h4>
+														<input type="text" class="form-control" id="zip-input" placeholder="Zip Code">
+																		</div>
+												</div>
+						</fieldset>	-->
+						<div class="col-sm-8 nopad">
+							<div id="map-canvas2"></div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<h2 class="lightfont">Stuff</h2>
+						<p class="lightfont">
+							Lorem ipsum dolor sit amet, ut sapien, lacus vestibulum, lacus at sed id sed ornare, donec congue orci. Morbi nullam, ridiculus aliquam sed mauris sit vivamus et, ut morbi ultricies. Pulvinar dolores in nullam neque neque vivamus, mattis porttitor. In consectetuer a, tempus ultrices erat ligula maecenas urna sit, proin vitae dui, ante potenti. Eu vivamus lobortis vivamus dolor, sit eleifend a mi, tempus pellentesque facilisis, mi nunc, lectus lacus dictum elit risus nullam a. Erat sed mauris orci ac, ultricies non sodales integer rutrum turpis. Inceptos est erat fusce et ornare, nunc vel diam feugiat, mauris pulvinar, a suspendisse a velit quis eu expedita, enim magna fringilla lorem aliquam augue. Libero a nulla
+						</p>
+						<p class="lightfont">
+							Lorem ipsum dolor sit amet, ut sapien, lacus vestibulum, lacus at sed id sed ornare, donec congue orci. Morbi nullam, ridiculus aliquam sed mauris sit vivamus et, ut morbi ultricies. Pulvinar dolores in nullam neque neque vivamus, mattis porttitor. In
+						</p>
+						<p class="lightfont">
+							Lorem ipsum dolor sit amet, ut sapien, lacus vestibulum, lacus at sed id sed ornare, donec congue orci. Morbi nullam, ridiculus aliquam sed mauris sit vivamus et, ut morbi ultricies. Pulvinar dolores in nullam neque neque vivamus, mattis porttitor. In consectetuer a, tempus ultrices erat ligula maecenas urna sit, proin vitae dui, ante potenti. Eu vivamus lobortis vivamus dolor, sit eleifend a mi, tempus pellentesque facilisis, mi nunc, lectus lacus dictum elit risus nullam a. Erat sed mauris orci ac, ultricies non sodales integer rutrum turpis. Inceptos est erat fusce et ornare, nunc vel diam feugiat, mauris pulvinar, a suspendisse a velit quis eu expedita, enim magna fringilla lorem aliquam augue. Libero a nulla
+						</p>
 					</div>
 				</div>
-				</fieldset>-->
-
-			<form id="listRvForm" ng-submit="listRv()">
-					<div class="col-sm-8 nopad">
-					  <div class="form-group">
-					  	<h4 class="lightfont">Model</h4>
-					    <input type="text" class="form-control"  name="model" placeholder="Enter a Model"/>
-					  </div>
-					</div>
-					<div class="col-sm-4">
-					  <div class="form-group">
-					  	<h4 class="lightfont">Type of Listing</h4>
-					    <input type="text" class="form-control"  name="type" placeholder="Enter a Type"/>
-					  </div>
-					</div>					  
-					<div class="col-sm-12 nopad">
-					  <div class="form-group">
-					  	<h4 class="lightfont">Year</h4>
-					    <textarea type="text" class="form-control"  name="year" placeholder="Enter a Year"></textarea>
-					  </div>
-					</div>
-					<div class="col-sm-12 nopad">
-					  <div class="form-group">
-					  	<h4 class="lightfont">Length</h4>
-					    <textarea type="text" class="form-control"  name="length" placeholder="Enter a Length"></textarea>
-					  </div>
-					</div>
-
-					<div class="col-sm-12 nopad">
-					  <div class="form-group">
-					  	<h4 class="lightfont">Details</h4>
-					    <textarea type="text" class="form-control"   name="details" placeholder="Enter Details"></textarea>
-					  </div>
-					</div>
-
-					<div class="col-sm-12 nopad">
-					  <div class="form-group">
-					  	<h4 class="lightfont">Features</h4>
-					    <textarea type="text" class="form-control"  name="features" placeholder="Enter Features"></textarea>
-					  </div>
-					</div>
-
-					<div class="col-sm-12 nopad">
-					  <div class="form-group">
-					  	<h4 class="lightfont">RV Description</h4>
-					    <textarea type="text" class="form-control"  name="description" placeholder="Enter a Description"></textarea>
-					  </div>
-					</div>
-
-					 <h4 class="lightfont" style="padding-left:15px;">Price</h4>
-
-					<div class="col-sm-3 nopad">						
-					  <div class="form-group">
-					    <input type="text" class="form-control"  name="daily_rate" placeholder="Enter a Price"/>
-
-					  </div>
-					</div>
-					<div class="col-sm-3 nopad label-form">
-						<div class="form-group">
-							<label for="daily_rate">/daily</label>
-						</div>
-					</div>
-
-					 <h4 class="lightfont" style="padding-left:15px;">Price</h4>
-
-					<div class="col-sm-3 nopad" style="clear:both;">						
-					  <div class="form-group">
-					    <input type="text" class="form-control"  name="weekly_rate" placeholder="Enter a Price"/>
-
-					  </div>
-					</div>
-					<div class="col-sm-3 nopad label-form">
-						<div class="form-group">
-							<label for="weekly_rate">/weekly</label>
-						</div>
-					</div>
-
-				<button class="btn btn-default" style="clear:both;float:left;">List RV</button>
-
-			</form>
-
-				
-
-<!--
-				<fieldset>
-					<div class="col-sm-12 nopad">									  
-					  <div class="form-group">
-					  	<h4 class="lightfont">Address</h4>
-
-					    <input type="text" class="form-control"  id="add-input" placeholder="Address"  class="controls" >
-					  </div>					  
-					</div>
-				</fieldset>	
-				<fieldset>
-					<div class="col-sm-8 nopad">
-					  <div class="form-group">
-					  	<h4 class="lightfont">City</h4>
-					    <input type="text" class="form-control" id="city-input" placeholder="City">
-					  </div>
-					</div>
-					<div class="col-sm-4">
-					  <div class="form-group">
-					  	<h4 class="lightfont">State</h4>
-					    <input type="text" class="form-control" id="state-input" placeholder="State">
-					  </div>
-					</div>					  
-				</fieldset>
-
-				<fieldset>
-					<div class="col-sm-3 nopad">									  
-					  <div class="form-group">
-					  	<h4 class="lightfont">Zip Code</h4>
-
-					    <input type="text" class="form-control" id="zip-input" placeholder="Zip Code">
-					  </div>					  
-					</div>
-				</fieldset>	-->
-
-					<div class="col-sm-8 nopad">									  
-						<div id="map-canvas2"></div>
-					</div>
-
-</div>
-
-<div class="col-sm-4">
-		<h2 class="lightfont">Stuff</h2>
-		<p class="lightfont">
-Lorem ipsum dolor sit amet, ut sapien, lacus vestibulum, lacus at sed id sed ornare, donec congue orci. Morbi nullam, ridiculus aliquam sed mauris sit vivamus et, ut morbi ultricies. Pulvinar dolores in nullam neque neque vivamus, mattis porttitor. In consectetuer a, tempus ultrices erat ligula maecenas urna sit, proin vitae dui, ante potenti. Eu vivamus lobortis vivamus dolor, sit eleifend a mi, tempus pellentesque facilisis, mi nunc, lectus lacus dictum elit risus nullam a. Erat sed mauris orci ac, ultricies non sodales integer rutrum turpis. Inceptos est erat fusce et ornare, nunc vel diam feugiat, mauris pulvinar, a suspendisse a velit quis eu expedita, enim magna fringilla lorem aliquam augue. Libero a nulla 			
-		</p>
-		<p class="lightfont">
-Lorem ipsum dolor sit amet, ut sapien, lacus vestibulum, lacus at sed id sed ornare, donec congue orci. Morbi nullam, ridiculus aliquam sed mauris sit vivamus et, ut morbi ultricies. Pulvinar dolores in nullam neque neque vivamus, mattis porttitor. In
-</p>
-		<p class="lightfont">
-Lorem ipsum dolor sit amet, ut sapien, lacus vestibulum, lacus at sed id sed ornare, donec congue orci. Morbi nullam, ridiculus aliquam sed mauris sit vivamus et, ut morbi ultricies. Pulvinar dolores in nullam neque neque vivamus, mattis porttitor. In consectetuer a, tempus ultrices erat ligula maecenas urna sit, proin vitae dui, ante potenti. Eu vivamus lobortis vivamus dolor, sit eleifend a mi, tempus pellentesque facilisis, mi nunc, lectus lacus dictum elit risus nullam a. Erat sed mauris orci ac, ultricies non sodales integer rutrum turpis. Inceptos est erat fusce et ornare, nunc vel diam feugiat, mauris pulvinar, a suspendisse a velit quis eu expedita, enim magna fringilla lorem aliquam augue. Libero a nulla 			
-		</p>
-</div>
-
-</div>
-    </div>
-</div>
-</div>
-
+			</div>
+		</div>
+	</div>
