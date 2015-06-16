@@ -16,7 +16,7 @@
     </head>
     <body >
 
-<div class="container-fluid">
+<div class="container-fluid" >
 
 <!--login pop over -->
 
@@ -40,7 +40,7 @@
    		
     		<ul>
 
-    			<li>{{userName}}</li>   			
+    			<li id="loggedin"></li>   			
 				<li id="editBug"><span class="glyphicon glyphicon-pencil"></span></li>	
     			<li><button id="listBtn" type="text" class="btn btn-default" go-list>List a RV</button></li>
     		</ul>
@@ -48,7 +48,7 @@
 
 
  <!--load views-->   	
-        <ng-view autoscroll="true"></ng-view>
+        <ng-view autoscroll="true" ></ng-view>
 
 
 <!-- fixed help footer -->

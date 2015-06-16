@@ -1,5 +1,11 @@
 var nameHolder = [];
 var loggedInUser = [];
+var loggedUserId = [];
+var access_token = [];
+
+
+var matchToken = [];
+
 var tincanrvApp = angular.module("tincanrvApp", ['ngRoute', 'ngResource']).filter("reverse", function() {
   return function(items) {
     return items.slice().reverse(); // Create a copy of the array and reverse the order of the items
@@ -30,7 +36,7 @@ tincanrvApp.config(['$routeProvider',
     when('/:nameHolder/edit', {
       templateUrl: 'views/edit.html',
       controller: 'editCtrl'
-    }).
+      }).
     when('/:nameHolder/listrv', {
       templateUrl: 'views/listrv.html',
       controller: 'listRvCtrl'

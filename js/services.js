@@ -22,11 +22,11 @@ tincanrvApp.factory('tincanFactory', function($http) {
     }
 
 
-    tincanFactory.getToken = function(login){
+    tincanFactory.getToken = function(loginObject, id){
         return $http({
                method: 'POST',
-               url:  urlBase + 'oauth/access_token',
-               data: login 
+               url:  urlBase + 'oauth/access_token/' + id,
+               data: loginObject 
                          
             });
     }

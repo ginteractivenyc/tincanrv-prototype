@@ -1,6 +1,6 @@
 tincanrvApp.controller("homeCtrl", function($scope, tincanFactory, $location){
-  document.getElementById('splashNav').style.display = "block";
- document.getElementsByClassName('tcMainNav')[0].style.display = "none";
+  document.getElementById('splashNav').style.visibility = "visible";
+ document.getElementsByClassName('tcMainNav')[0].style.visibility = "hidden";
   tincanFactory.homeTiles().success(function(data) {
   //spinner.stop();
   $scope.homeTiles = data.users;
@@ -54,6 +54,8 @@ var newContentString = $.param(newContent);
       //$('#welcomeUser').fadeIn();
       console.log(success)
     $scope.loggedUser = success.user[0].username;
+    loggedUserId.push(success.user[0].id);
+    console.log(loggedUserId)
 
 var loggedUser = {
     username: username,
@@ -61,18 +63,16 @@ var loggedUser = {
     grant_type: "password",
     client_id: '1',
     client_secret: 'tinnycan2%^3'
-}
-var loggedUserString = $.param(loggedUser);
+  }
+var loginObject = $.param(loggedUser);
 
 
- tincanFactory.getToken(loggedUserString).success(function(success){  
+ tincanFactory.getToken(loginObject, loggedUserId).success(function(success){  
     console.log(success)
-    return false;
+    access_token.push(success.user[0].access_token);
     loggedInUser.push($scope.loggedUser);
-    memcachejs.set("access_token", "value", 4000);
-
-
-    $location.path('/' + $scope.loggedUser + '/edit');
+    memcachejs.set("access_token", access_token, 4000);
+    $location.path('/' + loggedInUser + '/edit');
  }).error(function(error){
   console.log(error)
  });
@@ -91,9 +91,9 @@ $('body').removeClass('backgroundChange');
 
   $scope.loggedUser = [];
   $scope.userId = [];
- document.getElementsByClassName('tcMainNav')[0].style.display = "block";
-document.getElementById('splashNav').style.display = "none";
-document.getElementById('editBug').style.display = "none";
+ document.getElementsByClassName('tcMainNav')[0].style.visibility = "visible";
+document.getElementById('splashNav').style.visibility = "hidden";
+document.getElementById('editBug').style.visibility = "hidden";
 
 
 //user signup
@@ -131,8 +131,8 @@ document.getElementById('editBug').style.display = "none";
 
 
 }).controller("userCtrl", function($location, $scope, tincanFactory, $route, $routeParams){
- document.getElementsByClassName('tcMainNav')[0].style.display = "block";
-document.getElementById('splashNav').style.display = "none";
+ document.getElementsByClassName('tcMainNav')[0].style.visibility = "visible";
+document.getElementById('splashNav').style.visibility = "hidden";
   $('body').removeClass('backgroundChange');
 var nameHolder = $routeParams.nameHolder;
 $scope.userName = $routeParams.nameHolder;
@@ -173,21 +173,19 @@ $scope.userName = $routeParams.nameHolder;
     });
   }, 100);
 }).controller("editCtrl", function($location, $scope, tincanFactory, $route, $routeParams){
- document.getElementsByClassName('tcMainNav')[0].style.display = "block";
-document.getElementById('splashNav').style.display = "none";
-console.log(loggedInUser)
+//match token
+   $scope.showthis = [];
+document.getElementById('splashNav').style.visibility = "hidden";
+   document.getElementsByClassName('tcMainNav')[0].style.visibility = "visible";
 
-if ($routeParams.nameHolder === localStorage.getItem('loggedUser')){
-  $('#splashNav').hide();
-  $('.loggedin').show();
+tincanFactory.getUser($routeParams.nameHolder).success(function(success) {
 
+if (memcachejs.get("access_token") === success.user[0].access_token){
+  $scope.showthis = 'show';
+  $('#loggedin').html(success.user[0].username);
   $('body').removeClass('backgroundChange');
-  $('.tcMainNav').show();
-    nameHolder = $routeParams.nameHolder;
 
-    tincanFactory.getUser(nameHolder).success(function(success) {
  $scope.userId = [];
-
 
   $scope.editAddress = function(){
     var newAddress = $('#addressForm').serialize();
@@ -197,20 +195,28 @@ if ($routeParams.nameHolder === localStorage.getItem('loggedUser')){
     }).error(function(error){
         console.log(error)
     });
-
   }
 
-
-}).error(function(error){
-  console.log(error)
-});
 }else{
   $location.path('/')
 }
+
+
+  }).error(function(error) {
+    console.log(error)
+  });
+
+
 }).controller("listRvCtrl", function($location, $scope, tincanFactory, $route, $routeParams){
- document.getElementsByClassName('tcMainNav')[0].style.display = "block";
-document.getElementById('splashNav').style.display = "none";
-$('body').removeClass('backgroundChange');
+  $scope.showthis = [];
+ document.getElementsByClassName('tcMainNav')[0].style.visibility = "visible";
+document.getElementById('splashNav').style.visibility = "hidden";
+
+
+tincanFactory.getUser($routeParams.nameHolder).success(function(success) {
+
+if (memcachejs.get("access_token") === success.user[0].access_token){
+  $scope.showthis = 'show';
 
   $scope.userName = $routeParams.nameHolder;
 
@@ -221,8 +227,10 @@ console.log($scope.userId)
 
   });
 
-
-
+} else{
+   $location.path('/')
+}
+});
 
 $scope.listRv = function(){
   var rvObject = $('#listRvForm').serialize();
@@ -231,36 +239,45 @@ $scope.listRv = function(){
     console.log(success)
   }).error(function(error){
     console.log(error)
-  })
+  });
 }
 }).controller('howItWorksCtrl', function(){
 
- document.getElementsByClassName('tcMainNav')[0].style.display = "block";
-document.getElementById('splashNav').style.display = "none";
+ document.getElementsByClassName('tcMainNav')[0].style.visibility = "visible";
+document.getElementById('splashNav').style.visibility = "hidden";
 
 });
 
 
 
 //toggle Login Modal
-tincanrvApp.directive('logIn', function(){
-       return {
-            restrict: 'A',
-            link: function($scope, $elm) {
-                 $elm.on('click', function() {
-                  $('#loginModal').modal('toggle')
-                 });
-               }
-             }
-           }).directive('goHome', function(){
-            return{
-              restrict: 'A',
-              link: function($scope, $elm){
-                $elm.on('click', function(){
-                    location.replace("#/")
-                });
-              }
-            }
-           });
+tincanrvApp.directive('logIn', function() {
+  return {
+    restrict: 'A',
+    link: function($scope, $elm) {
+      $elm.on('click', function() {
+        $('#loginModal').modal('toggle')
+      });
+    }
+  }
+}).directive('goHome', function() {
+  return {
+    restrict: 'A',
+    link: function($scope, $elm) {
+      $elm.on('click', function() {
+        location.replace("#/")
+      });
+    }
+  }
+}).directive('goList', ['$routeParams', function($routeParams) {
+  return {
+    restrict: 'A',
+    link: function($scope, $elm) {
+      $elm.on('click', function() {
+        location.replace('#/' + $routeParams.nameHolder + '/listrv')
+      });
+    }
+  }
+}]);
 
 
