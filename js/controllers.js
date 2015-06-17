@@ -204,13 +204,14 @@ $scope.userName = $routeParams.nameHolder;
       console.log(error)
     });
 
-}).controller("listRvCtrl", function($location, $scope, tincanFactory, $route, $routeParams) {  $scope.showthis = [];
+}).controller("listRvCtrl", function($location, $scope, tincanFactory, $route, $routeParams) {  
+  $scope.showthis = [];
  $('footer').hide(); 
 
 
   tincanFactory.getUser($routeParams.nameHolder).success(function(success) {
 
-    if (memcachejs.get("access_token") === success.user[0].access_token) {
+  if (memcachejs.get("access_token") === success.user[0].access_token) {
       $scope.showthis = 'show';
 
       $scope.userName = $routeParams.nameHolder;
@@ -219,7 +220,6 @@ $scope.userName = $routeParams.nameHolder;
         $scope.userId = success.user[0].id;
         console.log($scope.userId)
       }).error(function(error) {
-
       });
 
     } else {
@@ -231,6 +231,8 @@ $scope.userName = $routeParams.nameHolder;
 
     tincanFactory.createRVListing($scope.userId, rvObject).success(function(success) {
       console.log(success)
+      alert('RV Successfully Created!')
+      
     }).error(function(error) {
       console.log(error)
     });
