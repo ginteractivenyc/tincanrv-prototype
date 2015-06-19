@@ -38,10 +38,11 @@ tincanrvApp.factory('tincanFactory', function($http) {
             });
     }
 
-    tincanFactory.getUser = function(nameHolder){
+    tincanFactory.getUser = function(idHolder, access_token){
         return $http({
                method: 'GET',
-               url:  urlBase + 'api/v1/users/' + nameHolder            
+               url:  urlBase + 'api/v1/users/' + idHolder,
+               params: {"access_token" : access_token}      
             });
     }
 
@@ -54,11 +55,12 @@ tincanrvApp.factory('tincanFactory', function($http) {
             });
     }
 
-    tincanFactory.editAddress = function(newAddress, userid){
+    tincanFactory.editAddress = function(newAddress, userid, access_token){
         return $http({
                method: 'POST',
                url:  urlBase + 'api/v1/users/' + userid + '/address/update',
-               data: newAddress
+               data: newAddress,
+               headers: {"access_token" : access_token, "Content-type" : "application/json"}  
                          
             });
     }
