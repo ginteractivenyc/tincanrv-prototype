@@ -2,6 +2,17 @@
   display: none !important;
 }
 
+body {
+overflow-y: scroll;
+}
+body.modal-open {
+overflow-y: scroll;
+margin: 0;
+}
+.modal {
+overflow: auto;
+}
+
 html, body{
 	margin:0;
 	padding:0;	
@@ -111,6 +122,14 @@ img{
 .padtop{
     padding-top: 65px;
   padding-bottom: 25px;
+}
+
+.padtop-xsmall {
+  padding-top:35px;
+}
+
+.padtop-small {
+  padding-top:95px;
 }
 
 .center{
@@ -871,7 +890,7 @@ footer{
 }
 #signUpForm, #addressForm{
   /*margin-top: 60px;*/
-  background: rgba(0,0,0,0.8);
+  /*background: rgba(0,0,0,0.8);*/
 
   /* padding: 10px; */
 }
@@ -936,11 +955,65 @@ footer{
     text-align: center;
 }
 
+.mainwrapper{
+background: rgba(0,0,0,0.8);
+  margin-top: 60px;
+  padding-top: 20px;
+  overflow: auto;
+}
+
+ul#userinfo{
+color:#ffffff;
+}
+ul#userinfo li{
+  padding-bottom:5px;
+  font-size: 2rem;
+    padding-left: 50px;
+}
+
+ul#userinfo label{
+  font-weight: 600;
+  font-size: 14px;
+}
+.glyphicon-pencil {
+    font-size: 1.5rem;
+  margin-left: 15px;
+}
+
+#updateAddress{
+    margin-top: 60px;
+}
+
+.modal-body{
+    overflow: auto;
+}
 
 
+.tincanavatar{
+  max-width:250px;
+}
 
+ul#userRvs{
+  max-width:660px;
+}
+ul#userRvs li{
+  width:200px;
+  height:240px;
+  color:#fff;
+  float:left;
+  margin-right:15px;
+}
 
-
+.rvModel{
+  font-size: 2rem;
+  font-weight:600;
+  text-transform: capitalize;
+}
+.rvType{
+  font-size: 1.5rem;
+  font-weight:300;
+  text-transform: capitalize;
+}
 @media only screen and (min-width : 0px) and (max-width : 319px){
 	body{
 		display: none;

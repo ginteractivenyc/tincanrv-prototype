@@ -3,7 +3,6 @@ var loggedInUser = [];
 var loggedUserId = [];
 var access_token = [];
 
-
 var matchToken = [];
 
 var tincanrvApp = angular.module("tincanrvApp", ['ngRoute', 'ngResource']).filter("reverse", function() {

@@ -38,10 +38,11 @@ tincanrvApp.factory('tincanFactory', function($http) {
             });
     }
 
-    tincanFactory.getUser = function(nameHolder){
+    tincanFactory.getUser = function(nameHolder, access_token){
         return $http({
                method: 'GET',
-               url:  urlBase + 'api/v1/users/' + nameHolder            
+               url:  urlBase + 'api/v1/users/' + nameHolder  ,
+               params: {access_token: access_token}          
             });
     }
 

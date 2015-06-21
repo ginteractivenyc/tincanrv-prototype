@@ -1,6 +1,34 @@
-tincanrvApp.controller("homeCtrl", function($scope, tincanFactory, $location) {
-  document.getElementById('splashNav').style.visibility = "visible";
-  document.getElementsByClassName('tcMainNav')[0].style.visibility = "hidden";
+tincanrvApp.controller("homeCtrl", function($scope, tincanFactory, $location, $routeParams) {
+
+if (memcachejs.get("access_token")) {
+    // we got something, and it hasn't expired
+    $('#splashNav').hide()
+    $('#mainNav').show()
+
+    tincanFactory.getUser( memcachejs.get("tincanuser"), memcachejs.get("access_token")).success(function(success) {
+        $('#loggedin').html(success.user[0].username);
+        $routeParams.nameHolder = success.user[0].username;
+
+
+}).error(function(error){
+
+});
+
+
+
+
+  }
+else {
+    $('#splashNav').show()
+    $('#mainNav').hide()
+    // nothing is retrieved, the cache has expired or nothing was set there
+}
+
+
+
+
+
+
   tincanFactory.homeTiles().success(function(data) {
     //spinner.stop();
     $scope.homeTiles = data.users;
@@ -52,7 +80,8 @@ tincanrvApp.controller("homeCtrl", function($scope, tincanFactory, $location) {
     tincanFactory.loginUser(newContentString).success(function(success) {
       $('#loginModal').modal('hide')
         //$('#welcomeUser').fadeIn();
-      console.log(success)
+      console.log(success.user[0].username)
+      //return false;
       $scope.loggedUser = success.user[0].username;
       loggedUserId.push(success.user[0].id);
       console.log(loggedUserId)
@@ -71,7 +100,9 @@ tincanrvApp.controller("homeCtrl", function($scope, tincanFactory, $location) {
         console.log(success)
         access_token.push(success.user[0].access_token);
         loggedInUser.push($scope.loggedUser);
-        memcachejs.set("access_token", access_token, 4000);
+        memcachejs.set("access_token", access_token);
+        memcachejs.set("tincanuser", $scope.loggedUser);
+       
         $location.path('/' + loggedInUser + '/edit');
       }).error(function(error) {
         console.log(error)
@@ -93,7 +124,7 @@ tincanrvApp.controller("homeCtrl", function($scope, tincanFactory, $location) {
   $scope.userId = [];
  document.getElementsByClassName('tcMainNav')[0].style.visibility = "visible";
 document.getElementById('splashNav').style.visibility = "hidden";
-document.getElementById('editBug').style.visibility = "hidden";
+//document.getElementById('editBug').style.visibility = "hidden";
 
 
 //user signup
@@ -106,37 +137,138 @@ document.getElementById('editBug').style.visibility = "hidden";
        //return false;
       $scope.userid = success.user[0].id;
       $scope.loggedUser = success.user[0].username;
+
     var newAddress = $('#addressForm').serialize();
     var userid =  $scope.userid;
+    var password = $('#password').val();
 
-    tincanFactory.createAddress(newAddress, userid).success(function(success){
+   /* tincanFactory.createAddress(newAddress, userid).success(function(success){
       console.log(success)
-
-     // nameHolder.push($scope.loggedUser)
-      $location.path('/' +  $scope.loggedUser)
-
-    }).error(function(error){
-        console.log(error)
-    });
-
-      
-     
     }).error(function(error) {
       console.log(error)
-      alert("there was an error" + error);
-    });
+    });*/
+     // nameHolder.push($scope.loggedUser)
+      //$location.path('/' +  $scope.loggedUser)
+
+      var loggedUser = {
+        username: $scope.loggedUser,
+        password: password,
+        grant_type: "password",
+        client_id: '1',
+        client_secret: 'tinnycan2%^3'
+      }
+      var loginObject = $.param(loggedUser);
+
+      tincanFactory.getToken(loginObject, $scope.userid).success(function(success) {
+        console.log(success)
+        access_token.push(success.user[0].access_token);
+       // loggedInUser.push(success.user[0].username);
+        memcachejs.set("access_token", access_token);
+        memcachejs.set("tincanuser", $scope.loggedUser);
+
+        $location.path('/' + success.user[0].username + '/edit');
+      }).error(function(error){
+        console.log(error)
+      });
+    }).error(function(error){
+        console.log(error)
+    });     
+     
 
   }
+
+}).controller("editCtrl", function($location, $scope, tincanFactory, $route, $routeParams) { 
+    $('footer').hide();   //match token
+    $scope.showthis = [];
+    document.getElementsByClassName('tcMainNav')[0].style.visibility = "visible";
+
+    tincanFactory.getUser(memcachejs.get("tincanuser"), memcachejs.get("access_token")).success(function(success) {
+//return false;
+        $scope.userName = success.user[0].username;
+         $scope.firstName = success.user[0].firstname;
+         $scope.middleName = success.user[0].middlename;
+         $scope.lastName = success.user[0].lastname;
+          $scope.gender = success.user[0].gender;
+          $scope.suffix = success.user[0].suffix;
+          $scope.email = success.user[0].email;
+
+          $scope.listings = success.user[0].rv;
+          console.log($scope.listings)
+      if (memcachejs.get("access_token") === success.user[0].access_token) {
+        $('#splashNav').hide()
+    $('#mainNav').show()
+      if (success.user[0].address === null) {
+        $scope.showcreateaddress = 'show';
+        $scope.showthisaddress = 'hide';
+
+        $scope.addressCreate = function() {
+          var newAddress = $('#createaddressForm').serialize()+'&'+$.param({ 'access_token': memcachejs.get("access_token") });
+
+          var id = success.user[0].id;
+          tincanFactory.createAddress(newAddress, id).success(function(success) {
+            console.log(success)
+          $scope.showcreateaddress = 'hide';
+         $scope.showthisaddress = 'show';          
+          $scope.street = success.address[0].street;
+           $scope.city = success.address[0].city;
+           $scope.state = success.address[0].state;
+          $scope.zipcode = success.address[0].zipcode;
+          }).error(function(error) {
+            console.log(error)
+          });
+        }
+
+
+      }else{
+        $scope.showcreateaddress = 'hide';
+        $scope.showthisaddress = 'show';
+
+          $scope.street = success.user[0].address.street;
+           $scope.city = success.user[0].address.city;
+           $scope.state = success.user[0].address.state;
+          $scope.zipcode = success.user[0].address.zipcode;
+
+}
+
+        $scope.showthis = 'show';
+        $('#loggedin').html(success.user[0].username);
+        $('body').removeClass('backgroundChange');
+
+        $scope.userId = [];
+
+        $scope.editAddress = function() {
+          var newAddress = $('#addressForm').serialize()+'&'+$.param({ 'access_token': memcachejs.get("access_token") });
+
+          var id = success.user[0].id;
+          tincanFactory.editAddress(newAddress, id).success(function(success) {
+            console.log(success)
+            $('#updateAddress').modal('hide');
+          $scope.street = success.user.address.street;
+           $scope.city = success.user.address.city;
+           $scope.state = success.user.address.state;
+          $scope.zipcode = success.user.address.zipcode;
+          }).error(function(error) {
+            console.log(error)
+          });
+        }
+
+      } else {
+        $location.path('/')
+      }
+
+
+    }).error(function(error) {
+      console.log(error)
+    });
 
 }).controller("userCtrl", function($location, $scope, tincanFactory, $route, $routeParams){
  document.getElementsByClassName('tcMainNav')[0].style.visibility = "visible";
 document.getElementById('splashNav').style.visibility = "hidden";
   $('body').removeClass('backgroundChange');
-var nameHolder = $routeParams.nameHolder;
 $scope.userName = $routeParams.nameHolder;
 //console.log($scope.userName)
   setTimeout(function() {
-    tincanFactory.getUser(nameHolder).success(function(data) {
+    tincanFactory.getUser($scope.userName, memcachejs.get("access_token")).success(function(data) {
       $scope.userInfo = data.user[0];
       $scope.rvList = data.rv;
       console.log($scope.userInfo.address)
@@ -171,52 +303,19 @@ $scope.userName = $routeParams.nameHolder;
     });
   }, 100);
 
-}).controller("editCtrl", function($location, $scope, tincanFactory, $route, $routeParams) { 
-    $('footer').hide();   //match token
-    $scope.showthis = [];
-    document.getElementsByClassName('tcMainNav')[0].style.visibility = "visible";
-
-    tincanFactory.getUser($routeParams.nameHolder).success(function(success) {
-
-      if (memcachejs.get("access_token") === success.user[0].access_token) {
-        $scope.showthis = 'show';
-        $('#loggedin').html(success.user[0].username);
-        $('body').removeClass('backgroundChange');
-
-        $scope.userId = [];
-
-        $scope.editAddress = function() {
-          var newAddress = $('#addressForm').serialize();
-          var id = success.user[0].id;
-          tincanFactory.editAddress(newAddress, id).success(function(success) {
-            console.log(success)
-          }).error(function(error) {
-            console.log(error)
-          });
-        }
-
-      } else {
-        $location.path('/')
-      }
-
-
-    }).error(function(error) {
-      console.log(error)
-    });
-
 }).controller("listRvCtrl", function($location, $scope, tincanFactory, $route, $routeParams) {  
   $scope.showthis = [];
  $('footer').hide(); 
 
 
-  tincanFactory.getUser($routeParams.nameHolder).success(function(success) {
+  tincanFactory.getUser($routeParams.nameHolder, memcachejs.get("access_token")).success(function(success) {
 
   if (memcachejs.get("access_token") === success.user[0].access_token) {
       $scope.showthis = 'show';
 
       $scope.userName = $routeParams.nameHolder;
 
-      tincanFactory.getUser($scope.userName).success(function(success) {
+      tincanFactory.getUser($scope.userName, memcachejs.get("access_token")).success(function(success) {
         $scope.userId = success.user[0].id;
         console.log($scope.userId)
       }).error(function(error) {
@@ -227,7 +326,7 @@ $scope.userName = $routeParams.nameHolder;
     }
   });
   $scope.listRv = function() {
-    var rvObject = $('#listRvForm').serialize();
+    var rvObject = $('#listRvForm').serialize()+'&'+$.param({ 'access_token': memcachejs.get("access_token") });
 
     tincanFactory.createRVListing($scope.userId, rvObject).success(function(success) {
       console.log(success)
