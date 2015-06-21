@@ -1,6 +1,6 @@
 var nameHolder = [];
 var loggedInUser = [];
-var loggedUserId = [];
+var loggedUserId =  [];
 var access_token = [];
 
 var matchToken = [];

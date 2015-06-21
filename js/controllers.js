@@ -79,12 +79,18 @@ else {
 
     tincanFactory.loginUser(newContentString).success(function(success) {
       $('#loginModal').modal('hide')
+<<<<<<< HEAD
         //$('#welcomeUser').fadeIn();
       console.log(success.user[0].username)
       //return false;
+=======
+
+>>>>>>> 6bc4ee33a6788c47b0504a7836490fc448eb139a
       $scope.loggedUser = success.user[0].username;
-      loggedUserId.push(success.user[0].id);
-      console.log(loggedUserId)
+      loggedUserId.push(success.user[0].id)
+
+      // set localstorage  user id
+      memcachejs.set("loggedUserId",success.user[0].id, 4000);
 
       var loggedUser = {
         username: username,
@@ -95,14 +101,20 @@ else {
       }
       var loginObject = $.param(loggedUser);
 
-
       tincanFactory.getToken(loginObject, loggedUserId).success(function(success) {
         console.log(success)
         access_token.push(success.user[0].access_token);
         loggedInUser.push($scope.loggedUser);
+<<<<<<< HEAD
         memcachejs.set("access_token", access_token);
         memcachejs.set("tincanuser", $scope.loggedUser);
        
+=======
+
+        // set localstorage  access token       
+        memcachejs.set("access_token", access_token, 4000);
+
+>>>>>>> 6bc4ee33a6788c47b0504a7836490fc448eb139a
         $location.path('/' + loggedInUser + '/edit');
       }).error(function(error) {
         console.log(error)
@@ -263,7 +275,7 @@ document.getElementById('splashNav').style.visibility = "hidden";
 
 }).controller("userCtrl", function($location, $scope, tincanFactory, $route, $routeParams){
  document.getElementsByClassName('tcMainNav')[0].style.visibility = "visible";
-document.getElementById('splashNav').style.visibility = "hidden";
+ document.getElementById('splashNav').style.visibility = "hidden";
   $('body').removeClass('backgroundChange');
 $scope.userName = $routeParams.nameHolder;
 //console.log($scope.userName)
@@ -303,6 +315,77 @@ $scope.userName = $routeParams.nameHolder;
     });
   }, 100);
 
+<<<<<<< HEAD
+=======
+}).controller("editCtrl", function($location, $scope, tincanFactory, $route, $routeParams) { 
+
+    $('footer').hide();   //match token
+    $scope.showthis = [];
+    document.getElementsByClassName('tcMainNav')[0].style.visibility = "visible";
+
+//get user if bypass login
+  if (memcachejs.get("access_token")) {
+    // we got something, and it hasn't expired
+    tincanFactory.getUser($routeParams.nameHolder, memcachejs.get("access_token")).success(function(success) {
+      console.log(success)
+      if (memcachejs.get("access_token") === success.user[0].access_token) {
+        $scope.showthis = 'show';
+        $('#loggedin').html(success.user[0].username);
+        $('body').removeClass('backgroundChange');
+
+        $scope.userId = [];
+
+        $scope.editAddress = function() {
+          var newAddress = $('#addressForm').serialize();
+          tincanFactory.editAddress(newAddress, memcachejs.get("loggedUserId"), memcachejs.get("access_token")).success(function(success) {
+            console.log(success)
+          }).error(function(error) {
+            console.log(error)
+          });
+        }
+
+      } else {
+        $location.path('/')
+      }
+
+
+
+    }).error(function(error) {
+      console.log(error)
+    });
+  } else{
+    //  get user if login
+    tincanFactory.getUser($routeParams.nameHolder, access_token).success(function(success) {
+      console.log(success)
+      if (memcachejs.get("access_token") === success.user[0].access_token) {
+        $scope.showthis = 'show';
+        $('#loggedin').html(success.user[0].username);
+        $('body').removeClass('backgroundChange');
+
+        $scope.userId = [];
+
+        $scope.editAddress = function() {
+          var newAddress = $('#addressForm').serialize();
+          tincanFactory.editAddress(newAddress, loggedUserId).success(function(success) {
+            console.log(success)
+          }).error(function(error) {
+            console.log(error)
+          });
+        }
+
+      } else {
+        $location.path('/')
+      }
+
+
+
+    }).error(function(error) {
+      console.log(error)
+    });
+
+  }
+
+>>>>>>> 6bc4ee33a6788c47b0504a7836490fc448eb139a
 }).controller("listRvCtrl", function($location, $scope, tincanFactory, $route, $routeParams) {  
   $scope.showthis = [];
  $('footer').hide(); 
