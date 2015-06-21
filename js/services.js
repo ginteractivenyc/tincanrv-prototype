@@ -38,20 +38,12 @@ tincanrvApp.factory('tincanFactory', function($http) {
             });
     }
 
-<<<<<<< HEAD
     tincanFactory.getUser = function(nameHolder, access_token){
         return $http({
                method: 'GET',
-               url:  urlBase + 'api/v1/users/' + nameHolder  ,
-               params: {access_token: access_token}          
-=======
-    tincanFactory.getUser = function(idHolder, access_token){
-        return $http({
-               method: 'GET',
-               url:  urlBase + 'api/v1/users/' + idHolder,
-               params: {"access_token" : access_token}      
->>>>>>> 6bc4ee33a6788c47b0504a7836490fc448eb139a
-            });
+               url:  urlBase + 'api/v1/users/' + nameHolder ,
+               params: {access_token: access_token} 
+               });         
     }
 
     tincanFactory.createAddress = function(newAddress, userid){
@@ -67,9 +59,7 @@ tincanrvApp.factory('tincanFactory', function($http) {
         return $http({
                method: 'POST',
                url:  urlBase + 'api/v1/users/' + userid + '/address/update',
-               data: newAddress,
-               headers: {"access_token" : access_token, "Content-type" : "application/json"}  
-                         
+               data: newAddress                         
             });
     }
 

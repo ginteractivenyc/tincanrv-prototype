@@ -79,13 +79,9 @@ else {
 
     tincanFactory.loginUser(newContentString).success(function(success) {
       $('#loginModal').modal('hide')
-<<<<<<< HEAD
         //$('#welcomeUser').fadeIn();
       console.log(success.user[0].username)
       //return false;
-=======
-
->>>>>>> 6bc4ee33a6788c47b0504a7836490fc448eb139a
       $scope.loggedUser = success.user[0].username;
       loggedUserId.push(success.user[0].id)
 
@@ -105,16 +101,13 @@ else {
         console.log(success)
         access_token.push(success.user[0].access_token);
         loggedInUser.push($scope.loggedUser);
-<<<<<<< HEAD
         memcachejs.set("access_token", access_token);
         memcachejs.set("tincanuser", $scope.loggedUser);
-       
-=======
+    
 
         // set localstorage  access token       
         memcachejs.set("access_token", access_token, 4000);
 
->>>>>>> 6bc4ee33a6788c47b0504a7836490fc448eb139a
         $location.path('/' + loggedInUser + '/edit');
       }).error(function(error) {
         console.log(error)
@@ -315,77 +308,6 @@ $scope.userName = $routeParams.nameHolder;
     });
   }, 100);
 
-<<<<<<< HEAD
-=======
-}).controller("editCtrl", function($location, $scope, tincanFactory, $route, $routeParams) { 
-
-    $('footer').hide();   //match token
-    $scope.showthis = [];
-    document.getElementsByClassName('tcMainNav')[0].style.visibility = "visible";
-
-//get user if bypass login
-  if (memcachejs.get("access_token")) {
-    // we got something, and it hasn't expired
-    tincanFactory.getUser($routeParams.nameHolder, memcachejs.get("access_token")).success(function(success) {
-      console.log(success)
-      if (memcachejs.get("access_token") === success.user[0].access_token) {
-        $scope.showthis = 'show';
-        $('#loggedin').html(success.user[0].username);
-        $('body').removeClass('backgroundChange');
-
-        $scope.userId = [];
-
-        $scope.editAddress = function() {
-          var newAddress = $('#addressForm').serialize();
-          tincanFactory.editAddress(newAddress, memcachejs.get("loggedUserId"), memcachejs.get("access_token")).success(function(success) {
-            console.log(success)
-          }).error(function(error) {
-            console.log(error)
-          });
-        }
-
-      } else {
-        $location.path('/')
-      }
-
-
-
-    }).error(function(error) {
-      console.log(error)
-    });
-  } else{
-    //  get user if login
-    tincanFactory.getUser($routeParams.nameHolder, access_token).success(function(success) {
-      console.log(success)
-      if (memcachejs.get("access_token") === success.user[0].access_token) {
-        $scope.showthis = 'show';
-        $('#loggedin').html(success.user[0].username);
-        $('body').removeClass('backgroundChange');
-
-        $scope.userId = [];
-
-        $scope.editAddress = function() {
-          var newAddress = $('#addressForm').serialize();
-          tincanFactory.editAddress(newAddress, loggedUserId).success(function(success) {
-            console.log(success)
-          }).error(function(error) {
-            console.log(error)
-          });
-        }
-
-      } else {
-        $location.path('/')
-      }
-
-
-
-    }).error(function(error) {
-      console.log(error)
-    });
-
-  }
-
->>>>>>> 6bc4ee33a6788c47b0504a7836490fc448eb139a
 }).controller("listRvCtrl", function($location, $scope, tincanFactory, $route, $routeParams) {  
   $scope.showthis = [];
  $('footer').hide(); 
