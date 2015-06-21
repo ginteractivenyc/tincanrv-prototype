@@ -187,7 +187,7 @@ document.getElementById('splashNav').style.visibility = "hidden";
     $scope.showthis = [];
     document.getElementsByClassName('tcMainNav')[0].style.visibility = "visible";
 
-    tincanFactory.getUser(memcachejs.get("tincanuser"), memcachejs.get("access_token")).success(function(success) {
+    tincanFactory.getUser($routeParams.nameHolder, memcachejs.get("access_token")).success(function(success) {
 //return false;
         $scope.userName = success.user[0].username;
          $scope.firstName = success.user[0].firstname;
