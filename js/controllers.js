@@ -275,7 +275,7 @@ $scope.userName = $routeParams.nameHolder;
   setTimeout(function() {
     tincanFactory.getUser($scope.userName, memcachejs.get("access_token")).success(function(data) {
       $scope.userInfo = data.user[0];
-      $scope.rvList = data.rv;
+      $scope.rvList = data.user[0].rv;
       console.log($scope.userInfo.address)
       //return false;
       setTimeout(function() {
