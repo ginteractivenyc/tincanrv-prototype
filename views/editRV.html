@@ -1,97 +1,42 @@
+<div ng-show="showthis == 'show'" class="mainwrapper" >
+
+<div class="col-sm-4">
+	<ul id="userinfo">
+		<li><h1 class="notop">{{model}}</h1></li>
+		<li class="tincanavatar"><img src="http://placehold.it/250x150"></li>
+		<li><label>type: </label> {{type}}</li>
+		<li><label>year: </label> {{year}}</li>
+		<li><label>length: </label> {{length}}</li>		
+		<li><label>features: </label> {{features}}</li>		
+		<li><label>description: </label> {{description}}</li>			
+	</ul>
 
 
-		<form id="signUpForm" ng-submit="insertUser()">
-			<div class="formWrapper">
-				<!--<div class="col-sm-12">
-					<div class="col-sm-6">	
-						<div class="form-group">
-						<label for="firstname"> Profile Image</label>					
-							<input type='file' id="imgInp" name="image" />
-						</div>
-					</div>
-				</div>-->
-				<div class="col-sm-12">
-					<div class="col-md-4">
-						<div class="form-group">
-							<label for="firstname"> First Name</label>
-							<input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter First Name">
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="form-group">
-							<label for="middlename"> Middle Name</label>
-							<input type="text" class="form-control" id="middlename" name="middlename" placeholder="Enter Middle Name">
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="form-group">
-							<label for="lastname"> Last Name</label>
-							<input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter Last Name">
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-12">
-					<div class="col-md-6">
-						<div class="form-group">
-							<label for="gender">Gender</label>
-							<input type="text" class="form-control" id="gender" name="gender" placeholder="Enter Gender">
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="form-group">
-							<label for="suffix"> Suffix</label>
-							<input type="text" class="form-control" id="suffix" name="suffix" placeholder="Enter Suffix">
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-12">
-					<div class="col-md-6">
-						<div class="form-group">
-							<label for="username">Username</label>
-							<input type="text" class="form-control" id="username" name="username" placeholder="Enter Username">
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-sm-12">
-					<div class="col-sm-6">
-						<div class="form-group">
-							<label for="email">Email address</label>
-							<input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-12">
-					<div class="col-sm-6">
-						<div class="form-group">
-							<label for="password">Password</label>
-							<input type="password" class="form-control" id="password" name= "password" placeholder="Password">
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-12">
-					<div class="col-sm-3">
-						<div class="form-group">
-							<select name="type" class="form-control" id="type">
-								<option>Type</option>
-								<option>Lister</option>
-								<option>Renter</option>
-							</select>
-						</div>
-					</div>
-				</div>
-				
 
+</div>
+<div class="col-sm-8">
+	<h3 class="notop padtop-xsmall">Photos of {{year}} {{model}} {{type}} </h3>
+	<ul id="userRvs">
+		<li ng-repeat="photo in photos"><img src="http://placehold.it/250x250">	</li>
 
-			</div>
-		</form>
+	</ul>	
+</div>
 
+<!-- Modal -->
+<div class="modal fade" id="updateAddress" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Update Address</h4>
+      </div>
+      <div class="modal-body">
 
-		<form id="addressForm" ng-submit="addressCreate()">
+		<form id="addressForm" ng-submit="editAddress()">
 			<div class="formWrapper">
 			
 				<div class="col-sm-12">
-					<h3 class="padleftright">Address</h3>
+					
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="street">Street</label>
@@ -176,9 +121,14 @@
 					</div>
 				</div>
 			</div>
-			<div  class="signupbtn btn btn-default" ng-click="insertUser()">Edit</div>
-		</form>
+			<button class="signupbtn btn btn-default">Edit Address</button>
 
+		</form>        
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
 
-
-
+</div>

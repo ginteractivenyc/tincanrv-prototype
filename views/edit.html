@@ -113,7 +113,7 @@
 <div class="col-sm-8">
 	<h3 class="notop padtop-xsmall">My RV's</h3>
 	<ul id="userRvs">
-		<li ng-repeat="listing in listings" data-id="{{listing.id}}"><img src="http://placehold.it/250x250">
+		<li ng-repeat="listing in listings" data-id="{{listing.id}}" ng-click="editRV($event)"><img src="http://placehold.it/250x250" />
 			<span class="rvModel">{{listing.model}}</span> | <span class="rvType">{{listing.type}}</span>
 
 

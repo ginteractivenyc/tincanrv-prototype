@@ -63,11 +63,20 @@ tincanrvApp.factory('tincanFactory', function($http) {
             });
     }
 
+    tincanFactory.getRVList = function(){
+        return $http({
+               method: 'GET',
+               url:  urlBase + 'api/v1/rv/'
+               });         
+    }
+
+
+
     tincanFactory.createRVListing = function(nameHolder, rvObject){
             return $http({
               method: 'POST',
               url: urlBase + 'api/v1/users/' + nameHolder + '/rv/create',
-              data: rvObject
+              data: rvObject            
             });
     }
 

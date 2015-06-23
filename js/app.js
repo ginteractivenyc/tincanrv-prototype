@@ -43,9 +43,17 @@ tincanrvApp.config(['$routeProvider',
       templateUrl: 'views/edit.html',
       controller: 'editCtrl'
       }).
+    when('/:nameHolder/edit/:id', {
+      templateUrl: 'views/editRV.html',
+      controller: 'editRvCtrl'
+      }).    
     when('/:nameHolder/listrv', {
       templateUrl: 'views/listrv.html',
       controller: 'listRvCtrl'
+    }).
+    when('/itemview/:id', {
+      templateUrl: 'views/itemview.html',
+      controller: 'itemViewCtrl'
     });   
   }
 ]).config(['$httpProvider', function ($httpProvider) {
